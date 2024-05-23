@@ -5,38 +5,50 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  Button,
 } from "@aws-amplify/ui-react";
+import "./Table.css";
 
-import { mockSongsData } from "../../data/mock";
+export interface Medico {
+  id: number;
+  nombre: string;
+  apellido: string;
+  email: string;
+  especialidad: string;
+}
 
-import { useNavigate } from "react-router-dom";
+export interface MedicosTableProps {
+  medicos?: Medico[];
+}
 
-const data = mockSongsData(10);
+const BasicTable = (props: MedicosTableProps) => {
+  const { medicos } = props;
 
-const BasicTable = () => {
-  const navigate = useNavigate();
   return (
     <>
       <Table caption="" highlightOnHover={false}>
         <TableHead>
           <TableRow>
-            <TableCell as="th">Title</TableCell>
-            <TableCell as="th">Description</TableCell>
-            <TableCell as="th">Category</TableCell>
-            <TableCell as="th"></TableCell>
+            <TableCell as="th">Nombre</TableCell>
+            <TableCell as="th">Apellido</TableCell>
+            <TableCell as="th">Email</TableCell>
+            <TableCell as="th">Especialidad</TableCell>
+            <TableCell as="th">Imagen</TableCell>
           </TableRow>
         </TableHead>
-
         <TableBody>
-          {data?.map((item) => {
+          {medicos?.map((medico) => {
             return (
-              <TableRow key={item._id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.description}</TableCell>
-                <TableCell>{item.genre}</TableCell>
+              <TableRow key={medico.id}>
+                <TableCell>{medico.nombre}</TableCell>
+                <TableCell>{medico.apellido}</TableCell>
+                <TableCell>{medico.email}</TableCell>
+                <TableCell>{medico.especialidad}</TableCell>
                 <TableCell>
-                  <Button onClick={() => navigate("/edit-form")}>Edit</Button>
+                  <img
+                    className="medico-table-img"
+                    src={`https://i.pravatar.cc/50?img=${medico.id}`}
+                    alt="profile"
+                  ></img>
                 </TableCell>
               </TableRow>
             );

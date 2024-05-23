@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Heading } from "@aws-amplify/ui-react";
-import BasicForm from "./BasicForm2";
+import BasicForm from "./BasicForm";
 
-const Forms2 = () => {
+const Forms = () => {
   return (
     <>
       <div>
-        <h2>Agregar Paciente</h2>
+        <h2>Agregar Medico</h2>
       </div>
       <View
         backgroundColor="var(--amplify-colors-white)"
@@ -23,4 +23,4 @@ const Forms2 = () => {
   );
 };
 
-export default Forms2;
+export default Forms;

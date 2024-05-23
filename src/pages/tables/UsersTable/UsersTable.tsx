@@ -10,12 +10,11 @@ import "./UserTable.css";
 
 export interface User {
   id: number;
-  first_name?: string;
-  last_name?: string;
-  email?: string;
-  phone?: string;
-  job_title?: string;
-  image?: string;
+  nombre: string;
+  apellido: string;
+  direccion: string;
+  seguroMedico: string;
+  rut:string;
 }
 
 export interface UsersTableProps {
@@ -30,30 +29,22 @@ const UsersTable = (props: UsersTableProps) => {
       <Table caption="" highlightOnHover={false}>
         <TableHead>
           <TableRow>
-            <TableCell as="th">first_name</TableCell>
-            <TableCell as="th">last_name</TableCell>
-            <TableCell as="th">email</TableCell>
-            <TableCell as="th">phone</TableCell>
-            <TableCell as="th">job_title</TableCell>
-            <TableCell as="th">img</TableCell>
+            <TableCell as="th">Nombre</TableCell>
+            <TableCell as="th">Apellido</TableCell>
+            <TableCell as="th">Rut</TableCell>
+            <TableCell as="th">Dirección</TableCell>
+            <TableCell as="th">Seguro Médico</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {users?.map((item) => {
             return (
               <TableRow key={item.id}>
-                <TableCell>{item.first_name}</TableCell>
-                <TableCell>{item.last_name}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.phone}</TableCell>
-                <TableCell>{item.job_title}</TableCell>
-                <TableCell>
-                  <img
-                    className="user-table-img"
-                    src={item.image}
-                    alt="profile"
-                  ></img>
-                </TableCell>
+                <TableCell>{item.nombre}</TableCell>
+                <TableCell>{item.apellido}</TableCell>
+                <TableCell>{item.rut}</TableCell>
+                <TableCell>{item.direccion}</TableCell>
+                <TableCell>{item.seguroMedico}</TableCell>
               </TableRow>
             );
           })}

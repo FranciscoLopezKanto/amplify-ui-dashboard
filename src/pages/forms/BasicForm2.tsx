@@ -6,10 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 interface FormValues {
   nombre: string;
-  apellido: string;
   email: string;
   password: string;
-  especialidad: string;
+  tipoUsuario: string;
+  edad: string; // inicialmente string para el input
+  apellido: string;
+  direccion: string;
+  rut: string;
+  seguroMedico: string;
 }
 
 const initialValues: FormValues = {
@@ -17,10 +21,14 @@ const initialValues: FormValues = {
   apellido: "",
   email: "",
   password: "",
-  especialidad: "",
+  tipoUsuario: "cliente",
+  edad: "",
+  direccion: "",
+  rut: "",
+  seguroMedico: "",
 };
 
-const BasicForm: React.FC = () => {
+const BasicForm2: React.FC = () => {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -48,7 +56,10 @@ const BasicForm: React.FC = () => {
     if (!values.email) newErrors.email = "Email es requerido.";
     if (!values.password) newErrors.password = "Contraseña es requerida.";
     if (values.password.length < 6) newErrors.password = "Contraseña debe tener al menos 6 caracteres.";
-    if (!values.especialidad) newErrors.especialidad = "Especialidad es requerida.";
+    if (!values.edad) newErrors.edad = "Edad es requerida.";
+    if (!values.direccion) newErrors.direccion = "Dirección es requerida.";
+    if (!values.rut) newErrors.rut = "RUT es requerido.";
+    if (!values.seguroMedico) newErrors.seguroMedico = "Seguro Médico es requerido.";
     return newErrors;
   };
 
@@ -62,17 +73,19 @@ const BasicForm: React.FC = () => {
     }
 
     try {
-      const apiUrl = `${process.env.REACT_APP_URL}api/v1/auth/Mregister`;
-      const payload = { ...values };
-      console.log("Datos a enviar:", payload);
+      const apiUrl = `${process.env.REACT_APP_URL}api/v1/auth/register`;
+      console.log("Datos a enviar:", values);
       console.log("URL de la API:", apiUrl);
 
+      const payload = {
+        ...values,
+        edad: parseInt(values.edad, 10) // Convertir edad a número
+      };
+
       const response = await axios.post(apiUrl, payload);
+      
       console.log("Registro exitoso:", response.data);
       toast.success("Registro exitoso");
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1500);
     } catch (error) {
       console.error("Error en el registro:", error);
       toast.error("Error en el registro. Por favor, inténtelo de nuevo.");
@@ -126,6 +139,46 @@ const BasicForm: React.FC = () => {
           hasError={!!errors.email}
           errorMessage={errors.email}
         />
+        <TextField
+          value={values.edad}
+          onChange={handleInputChange}
+          name="edad"
+          label="Edad"
+          type="number"
+          hasError={!!errors.edad}
+          errorMessage={errors.edad}
+        />
+        <TextField
+          value={values.direccion}
+          onChange={handleInputChange}
+          name="direccion"
+          label="Dirección"
+          type="text"
+          hasError={!!errors.direccion}
+          errorMessage={errors.direccion}
+        />
+        <TextField
+          value={values.rut}
+          onChange={handleInputChange}
+          name="rut"
+          label="RUT"
+          type="text"
+          hasError={!!errors.rut}
+          errorMessage={errors.rut}
+        />
+        <SelectField
+          value={values.seguroMedico}
+          onChange={handleInputChange}
+          name="seguroMedico"
+          label="Seguro Médico"
+          isRequired={true}
+          hasError={!!errors.seguroMedico}
+          errorMessage={errors.seguroMedico}
+        >
+          <option value="">Select an option</option>
+          <option value="fonasa">Fonasa</option>
+          <option value="isapre">Isapre</option>
+        </SelectField>
         <div style={{ position: "relative", width: "100%" }}>
           <TextField
             value={values.password}
@@ -144,22 +197,6 @@ const BasicForm: React.FC = () => {
             {showPassword ? "Hide" : "Show"}
           </Button>
         </div>
-        <SelectField
-          value={values.especialidad}
-          onChange={handleInputChange}
-          name="especialidad"
-          label="Especialidad"
-          isRequired={true}
-          hasError={!!errors.especialidad}
-          errorMessage={errors.especialidad}
-        >
-          <option value="">Select an option</option>
-          <option value="Cardiología">Cardiología</option>
-          <option value="Cirugía">Cirugía</option>
-          <option value="Dermatología">Dermatología</option>
-          <option value="Infectología">Infectología</option>
-          <option value="Medicina Interna">Medicina Interna</option>
-        </SelectField>
         <Button
           type="submit"
           variation="primary"
@@ -173,4 +210,4 @@ const BasicForm: React.FC = () => {
   );
 };
 
-export default BasicForm;
+export default BasicForm2;

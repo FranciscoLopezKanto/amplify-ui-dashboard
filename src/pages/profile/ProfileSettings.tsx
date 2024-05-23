@@ -10,33 +10,27 @@ const ProfileSettings = () => {
 
       <SwitchField
         isDisabled={false}
-        label="Email me when someone follows me"
+        label="report multiple cancellations of appointments"
         labelPosition="end"
         defaultChecked={false}
       />
 
       <SwitchField
         isDisabled={false}
-        label="Email me when someone mentions me"
+        label="Email me when there are weather problems
+        "
         labelPosition="end"
         defaultChecked={true}
       />
       <SwitchField
         isDisabled={false}
-        label="Item update notifications"
+        label="appointments update notifications"
         labelPosition="end"
         defaultChecked={false}
       />
       <SwitchField
         isDisabled={false}
-        label="Monthly product changes"
-        labelPosition="end"
-        defaultChecked={false}
-      />
-
-      <SwitchField
-        isDisabled={false}
-        label="Subscribe to newsletter"
+        label="log out every 30 minutes of inactivity"
         labelPosition="end"
         defaultChecked={true}
       />

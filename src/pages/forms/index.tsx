@@ -1,3 +1,4 @@
 import Forms from "./Forms";
+import Forms2 from "./Forms2"
 
-export default Forms;
+export  { Forms, Forms2 };

@@ -1,15 +1,31 @@
-import React from "react";
-import { View, Heading, ScrollView } from "@aws-amplify/ui-react";
-import BasicTable from "./BasicTable";
-//import UsersTable from "./UsersTable";
 
+//import UsersTable from "./UsersTable";
 // const demoUsers = [{ name: "hello" }, { name: "hello" }];
+import React, { useEffect, useState } from "react";
+import { View, Heading, ScrollView } from "@aws-amplify/ui-react";
+import MedicosTable from "./BasicTable";
 
 const Tables = () => {
+  const [dataMedicos, setDataMedicos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_URL}api/v1/profesionales`);
+        const data = await response.json();
+        setDataMedicos(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div>
-        <h2>Tables</h2>
+        <h2>Médicos</h2>
       </div>
 
       <View
@@ -19,10 +35,10 @@ const Tables = () => {
         padding="1rem"
         minHeight="80vh"
       >
-        <Heading color="#333"> Basic Table </Heading>
+        <Heading>Información</Heading>
         <br></br>
         <ScrollView width="100%">
-          <BasicTable />
+          <MedicosTable medicos={dataMedicos} />
         </ScrollView>
       </View>
     </>

@@ -6,6 +6,7 @@ import {
   MdModeEditOutline,
   MdAccountBox,
   MdOutlineTableChart,
+  MdEditCalendar,
 } from "react-icons/md";
 
 export const baseConfig = {
@@ -14,14 +15,14 @@ export const baseConfig = {
   titleSuffix: "",
   search: true,
   header: true,
-  headerText: "Logo",
+  headerText: "KantiMed",
   footer: true,
   footerText: (
     <>
       <span>
         © MIT {new Date().getFullYear()}, Made with ❤️ by {""}
-        <a href="https://github.com/mrtzdev" target="_blank" rel="noreferrer">
-          Mrtzdev
+        <a href="https://github.com/franciscolopezkanto" target="_blank" rel="noreferrer">
+          Kanto
         </a>
       </span>
     </>
@@ -47,21 +48,36 @@ export const appNavs = [
     title: "Dashboard",
     to: "/",
   },
+  {
+    eventKey: "Reservas",
+    icon: <Icon as={MdEditCalendar} />,
+    title: "Reservas",
+    to: "/",
+    children: [
+      {
+        eventKey: "basic-table",
+        title: "Crear Reserva",
+        to: "/tables",
+      },
+      
+
+  ]
+  },
 
   {
     eventKey: "tables",
     icon: <Icon as={MdOutlineTableChart} />,
-    title: "Tables",
+    title: "Personas",
     to: "/tables",
     children: [
       {
         eventKey: "basic-table",
-        title: "Basic Table",
+        title: "Doctores",
         to: "/tables",
       },
       {
         eventKey: "users",
-        title: "Users Table",
+        title: "Pacientes",
         to: "/users-table",
       },
     ],
@@ -69,13 +85,18 @@ export const appNavs = [
   {
     eventKey: "forms",
     icon: <Icon as={MdModeEditOutline} />,
-    title: "Forms",
+    title: "Ingresos",
     to: "/forms",
     children: [
       {
         eventKey: "form-basic",
-        title: "Basic",
+        title: "Agregar Paciente",
         to: "/forms",
+      },
+      {
+        eventKey: "form-basic2",
+        title: "Agregar Médico",
+        to: "/forms2",
       },
       {
         eventKey: "form-wizard",
@@ -87,7 +108,7 @@ export const appNavs = [
   {
     eventKey: "profile",
     icon: <Icon as={MdAccountBox} />,
-    title: "Profile",
+    title: "Perfil",
     to: "/profile",
   },
 ];
