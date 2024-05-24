@@ -97,17 +97,17 @@ const Dashboard = () => {
         >
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
-              title="Page Views"
+              title="Total Citas Medicas"
               amount="321,236"
               icon={<MdRemoveRedEye />}
             />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
-            <MiniStatistics title="Visits" amount="251,607" icon={<MdWeb />} />
+            <MiniStatistics title="Confirmadas" amount="251,607" icon={<MdWeb />} />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
-              title="Unique Visitors"
+              title="Canceladas"
               amount="23,762"
               icon={<MdPermIdentity />}
             />
@@ -115,12 +115,12 @@ const Dashboard = () => {
 
           <View columnSpan={[1, 1, 1, 2]} rowSpan={{ base: 3, large: 4 }}>
             <Card borderRadius="15px">
-              <div className="card-title">Traffic Summary</div>
+              <div className="card-title">Trafico de citas medicas</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <div className="row">
                     <TrafficSummary
-                      title="Traffic Summary"
+                      title="Trafico de citas medicas"
                       data={barChartData}
                       type="bar"
                       labels={[
@@ -177,19 +177,19 @@ const Dashboard = () => {
           </View>
           <View rowSpan={{ base: 1, large: 4 }}>
             <Card height="100%" borderRadius="15px">
-              <div className="card-title">Traffic Sources</div>
+              <div className="card-title">Areas Medicas</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <TrafficSources
-                    title="Traffic Sources"
+                    title="Areas medicas"
                     data={trafficSourceData}
                     type="donut"
                     labels={[
-                      "Direct",
-                      "Internal",
-                      "Referrals",
-                      "Search Engines",
-                      "Other",
+                      "Medicina general",
+                      "Cardiología",
+                      "Dermatología",
+                      "Ginegología",
+                      "Neurología",
                     ]}
                   />
                 ) : (
